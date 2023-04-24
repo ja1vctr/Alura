@@ -1,25 +1,28 @@
-const robotron = document.querySelector("#robotron")
+const controle = document.querySelectorAll("[data-controle]");
 
-const controleAjuste = document.querySelectorAll("controle-ajuste")
-const controleContador = document.querySelectorAll("controle-contador")
+controle.forEach((element) => {
+    element.addEventListener("click", (event) => {
+        const valor = event.target.dataset.controle;
+        const peca = event.target.parentNode;
 
+        manipulaDados(valor, peca);
 
-const subtrair = document.querySelector("#subtrair")
-const somar = document.querySelector("#somar")
-const braco = document.querySelector("#braco")
+    })
 
+});
 
-function adicionarValor(parametro) {
-    if (parametro === "somar") {
-        console.log(parametro)
-        braco.value = parseInt(braco.value) + 1;
+function manipulaDados(valor, controle) {
+    const peca = controle.querySelector("[data-contador]");
+
+    if (valor === "+") {
+        peca.value = parseInt(peca.value) + 1;
+        console.log(peca.valor)
     }
-    else {
-        if (parseInt(braco.value) > 0)
-            braco.value = parseInt(braco.value) - 1;
-    }
+
+    else if (valor === "-")
+        if (parseInt(peca.value) > 0) {
+            peca.value = parseInt(peca.value) - 1;
+            console.log(peca.valor)
+        }
+
 }
-
-somar.addEventListener("click", () => { adicionarValor("somar") })
-
-subtrair.addEventListener("click", () => { adicionarValor("subtrair") })
