@@ -37,32 +37,34 @@ controle.forEach((element) => {
     element.addEventListener("click", (event) => {
         const operacao = event.target.dataset.controle;
         const pecaClicada = event.target.dataset.peca;
-        const parentTagPeca = event.target.parentNode;
-        console.log(parentTagPeca)
+        const parentTagPeca = event.target.parentNode.querySelector("[data-contador]");
 
         manipulaDados(operacao, parentTagPeca);
-        atualizaEstatisticas(pecaClicada);
+        atualizaEstatisticas(operacao, pecaClicada);
     })
 });
 
 function manipulaDados(operacao, parentTagPeca) {
-    const valorAtributo = parentTagPeca.querySelector("[data-contador]");
-    console.log(valorAtributo)
+    const valorAtributo = parentTagPeca;
     if (operacao === "+") {
         valorAtributo.value = parseInt(valorAtributo.value) + 1;
     }
 
     else if (operacao === "-")
-        if (parseInt(peca.value) > 0) {
+        if (parseInt(valorAtributo.value) > 0) {
             valorAtributo.value = parseInt(valorAtributo.value) - 1;
         }
-
 }
 
-function atualizaEstatisticas(pecaClicada) {
-    // console.log(pecas)
+function atualizaEstatisticas(operacao, pecaClicada) {
     estatistica.forEach((element) => {
-        element.textContent = parseInt(element.textContent) +
-            pecas[pecaClicada][element.dataset.estatistica]
+        if (operacao === "+") {
+            element.textContent = parseInt(element.textContent) +
+                pecas[pecaClicada][element.dataset.estatistica]
+        }
+        else if (operacao === "-") {
+            element.textContent = parseInt(element.textContent) -
+                pecas[pecaClicada][element.dataset.estatistica]
+        }
     })
 }
