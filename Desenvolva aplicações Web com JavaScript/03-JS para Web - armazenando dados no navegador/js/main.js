@@ -2,7 +2,8 @@ const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista");
 const listaItens = JSON.parse(localStorage.getItem("itens")) || [];
 
-console.log(listaItens);
+// localStorage.clear();
+// console.log(listaItens);
 
 listaItens.forEach((element) => {
   criaElemento(element);
@@ -10,17 +11,18 @@ listaItens.forEach((element) => {
 
 form.addEventListener("submit", (evento) => {
   evento.preventDefault();
-  const nome = evento.target.elements["nome"];
-  const quantidade = evento.target.elements["quantidade"];
+  var nome = evento.target.elements["nome"];
+  var quantidade = evento.target.elements["quantidade"];
 
   const item = {
-    nome: nome,
-    quantidade: quantidade,
+    nome: nome.value,
+    quantidade: quantidade.value,
   };
+
   adicionaItem(item);
 
-  item.nome = "";
-  item.quantidade = "";
+  nome = "";
+  quantidade = "";
 });
 
 function criaElemento(item) {
@@ -30,12 +32,13 @@ function criaElemento(item) {
     novoItem.classList.add("item");
 
     const quantidadeItem = document.createElement("strong");
-    quantidadeItem.innerHTML = quantidade;
+    quantidadeItem.innerHTML = item.quantidade;
 
     novoItem.appendChild(quantidadeItem);
-    novoItem.innerHTML += nome;
-    novoItem.dataset.id = item.id;
-    console.log(novoItem.querySelector("[data-id]"));
+    novoItem.innerHTML += item.nome;
+    // console.log(item.nome);
+    novoItem.dataset.id = item.length;
+    console.log(novoItem);
 
     lista.appendChild(novoItem);
   }
@@ -47,13 +50,15 @@ function adicionaItem(item) {
     criaElemento(item);
 
     listaItens.push(item);
-
+    // console.log(item);
+    // console.log(listaItens);
     localStorage.setItem("itens", JSON.stringify(listaItens));
   }
 }
 
 function verificaExistente(item) {
   const existe = listaItens.find((elemento) => elemento.nome === item.nome);
+  console.log(existe);
   if (existe) {
     return true;
   } else {
