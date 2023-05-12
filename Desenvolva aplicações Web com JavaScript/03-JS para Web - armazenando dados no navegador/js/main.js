@@ -1,77 +1,67 @@
 const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista");
 const listaItens = JSON.parse(localStorage.getItem("itens")) || [];
-var existe;
+
 // localStorage.clear();
 
 listaItens.forEach((element) => {
-  criaElemento(element);
+  criarElemento(element);
 });
 
 form.addEventListener("submit", (evento) => {
   evento.preventDefault();
-  let nome = evento.target.elements["nome"];
-  let quantidade = evento.target.elements["quantidade"];
+  const nome = evento.target.elements["nome"];
+  const quantidade = evento.target.elements["quantidade"];
 
   const item = {
     nome: nome.value,
     quantidade: quantidade.value,
+    id: listaItens.length,
   };
 
-  adicionaItem(item);
+  verificaExistencia(item);
+});
+
+function criarElemento(item) {
+  const novoElemento = document.createElement("li");
+  const filhoNovoElemento = document.createElement("strong");
+
+  novoElemento.appendChild(filhoNovoElemento);
+  filhoNovoElemento.innerHTML = item.quantidade;
+
+  novoElemento.classList.add("item");
+  novoElemento.dataset.id = item.id;
+
+  novoElemento.innerHTML += item.nome;
+
+  lista.appendChild(novoElemento);
+
+  if (listaItens.find((element) => element.nome === item.nome)) {
+  } else {
+    listaItens.push(item);
+  }
+
+  localStorage.setItem("itens", JSON.stringify(listaItens));
 
   nome = "";
   quantidade = "";
-});
-
-function criaElemento(item) {
-  // if que verifica caso os valoraes sejam strings vazias, nesse caso ele não executa o procedimento de adicionar
-  if (item.nome === "" || item.quantidade === "") {
-  } else {
-    item.id = listaItens.length;
-
-    const novoItem = document.createElement("li");
-    novoItem.classList.add("item");
-
-    const quantidadeItem = document.createElement("strong");
-    quantidadeItem.innerHTML = item.quantidade;
-
-    novoItem.appendChild(quantidadeItem);
-    novoItem.innerHTML += item.nome;
-    // console.log(item.nome);
-    novoItem.dataset.id = item.id;
-    // console.log(novoItem);
-
-    lista.appendChild(novoItem);
-  }
 }
 
-function adicionaItem(item) {
-  if (verificaExistente(item)) {
-    atualizaElemento(item);
-  } else {
-    criaElemento(item);
+function verificaExistencia(item) {
+  const existe = listaItens.find((element) => item.nome === element.nome);
 
-    listaItens.push(item);
-    // console.log(item);
-    // console.log(listaItens);
-    localStorage.setItem("itens", JSON.stringify(listaItens));
-  }
-}
-
-function verificaExistente(item) {
-  existe = listaItens.find((elemento) => elemento.nome === item.nome);
   if (existe) {
-    existe = "";
-    return true;
+    console.log(existe);
+    const elemento = document.querySelector('[data-id="' + existe.id + '"]');
+    elemento.firstChild.innerHTML = item.quantidade;
+
+    // precisa arrumar:
+
+    // console.log(listaItens[existe.id]);
+    // console.log(existe);
+    // listaItens[existe.id] = item;
+    // console.log(listaItens[existe.id]);
   } else {
-    return false;
+    criarElemento(item);
   }
-}
-
-function atualizaElemento(item) {
-  item.id = existe.id;
-
-  const elemento = document.querySelector('[data-id="' + item.id + '"]');
-  console.log(elemento);
 }
