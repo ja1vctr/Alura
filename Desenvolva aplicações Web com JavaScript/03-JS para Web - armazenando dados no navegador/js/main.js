@@ -16,7 +16,6 @@ form.addEventListener("submit", (evento) => {
   const item = {
     nome: nome.value,
     quantidade: quantidade.value,
-    id: listaItens.length,
   };
 
   verificaExistencia(item);
@@ -33,6 +32,7 @@ function criarElemento(item) {
   novoElemento.dataset.id = item.id;
 
   novoElemento.innerHTML += item.nome;
+  novoElemento.appendChild(botaoDeleta());
 
   lista.appendChild(novoElemento);
 
@@ -41,27 +41,39 @@ function criarElemento(item) {
     listaItens.push(item);
   }
 
-  localStorage.setItem("itens", JSON.stringify(listaItens));
-
   nome = "";
   quantidade = "";
 }
 
 function verificaExistencia(item) {
+  console.log(item);
   const existe = listaItens.find((element) => item.nome === element.nome);
 
   if (existe) {
-    console.log(existe);
+    item.id = existe.id;
+
     const elemento = document.querySelector('[data-id="' + existe.id + '"]');
     elemento.firstChild.innerHTML = item.quantidade;
 
-    // precisa arrumar:
-
-    // console.log(listaItens[existe.id]);
-    // console.log(existe);
-    // listaItens[existe.id] = item;
-    // console.log(listaItens[existe.id]);
+    listaItens[existe.id] = item;
+    localStorage.setItem("itens", JSON.stringify(listaItens));
   } else {
+    item.id = listaItens.length;
+
     criarElemento(item);
+    localStorage.setItem("itens", JSON.stringify(listaItens));
   }
+}
+
+function botaoDeleta() {
+  const elementoBotaoApaga = document.createElement("button");
+  elementoBotaoApaga.innerText = "X";
+  elementoBotaoApaga.classList.add("botao");
+
+  elementoBotaoApaga.addEventListener("click", function (event) {
+    console.log(event.target);
+    console.log(this);
+  });
+
+  return elementoBotaoApaga;
 }
