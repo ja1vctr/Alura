@@ -32,7 +32,7 @@ function criarElemento(item) {
   novoElemento.dataset.id = item.id;
 
   novoElemento.innerHTML += item.nome;
-  novoElemento.appendChild(botaoDeleta());
+  novoElemento.appendChild(botaoDeleta(item.id));
 
   lista.appendChild(novoElemento);
 
@@ -65,15 +65,34 @@ function verificaExistencia(item) {
   }
 }
 
-function botaoDeleta() {
+function botaoDeleta(id) {
   const elementoBotaoApaga = document.createElement("button");
   elementoBotaoApaga.innerText = "X";
   elementoBotaoApaga.classList.add("botao");
 
   elementoBotaoApaga.addEventListener("click", function (event) {
-    console.log(event.target);
-    console.log(this);
+    //outra maneira de pegar o evento (dúvida)
+    //console.log(event.target);
+    console.log(document.querySelector('[data-id="' + id + '"]'));
+    deletaElemento(this.parentNode, id);
   });
 
   return elementoBotaoApaga;
+}
+
+function deletaElemento(tag, id) {
+  tag.remove();
+  listaItens.splice(
+    listaItens.findIndex((elemento) => elemento.id === id),
+    1
+  );
+  lista;
+  alteraIds(listaItens);
+  localStorage.setItem("itens", JSON.stringify(listaItens));
+}
+
+function alteraIds(array) {
+  for (let i = 0; i < array.length; i++) {
+    array[i].id = i;
+  }
 }
