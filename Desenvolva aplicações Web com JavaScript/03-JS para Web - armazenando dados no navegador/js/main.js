@@ -3,9 +3,10 @@ const lista = document.getElementById("lista");
 const listaItens = JSON.parse(localStorage.getItem("itens")) || [];
 
 // localStorage.clear();
+// console.log(listaItens);
 
 listaItens.forEach((element) => {
-  criarElemento(element);
+  criaElemento(element);
 });
 
 form.addEventListener("submit", (evento) => {
@@ -14,85 +15,50 @@ form.addEventListener("submit", (evento) => {
   const quantidade = evento.target.elements["quantidade"];
 
   const item = {
-    nome: nome.value,
-    quantidade: quantidade.value,
+    nome: no,
+    quantidade: quantidade,
   };
 
-  verificaExistencia(item);
+  adicionaItem(item);
+
+  item.nome = "";
+  item.quantidade = "";
 });
 
-function criarElemento(item) {
-  const novoElemento = document.createElement("li");
-  const filhoNovoElemento = document.createElement("strong");
-
-  novoElemento.appendChild(filhoNovoElemento);
-  filhoNovoElemento.innerHTML = item.quantidade;
-
-  novoElemento.classList.add("item");
-  novoElemento.dataset.id = item.id;
-
-  novoElemento.innerHTML += item.nome;
-  novoElemento.appendChild(botaoDeleta(item.id));
-
-  lista.appendChild(novoElemento);
-
-  if (listaItens.find((element) => element.nome === item.nome)) {
+function criaElemento(item) {
+  if (item.nome === "" || item.quantidade === "") {
   } else {
+    const novoItem = document.createElement("li");
+    novoItem.classList.add("item");
+
+    const quantidadeItem = document.createElement("strong");
+    quantidadeItem.innerHTML = quantidade;
+
+    novoItem.appendChild(quantidadeItem);
+    novoItem.innerHTML += nome;
+    novoItem.dataset.id = item.id;
+
+    lista.appendChild(novoItem);
+  }
+}
+
+function adicionaItem(item) {
+  if (verificaExistente(item)) {
+  } else {
+    criaElemento(item);
+
     listaItens.push(item);
-  }
 
-  nome = "";
-  quantidade = "";
+    localStorage.setItem("itens", JSON.stringify(listaItens));
+  }
 }
 
-function verificaExistencia(item) {
-  console.log(item);
-  const existe = listaItens.find((element) => item.nome === element.nome);
-
+function verificaExistente(item) {
+  const existe = listaItens.find((elemento) => elemento.nome === item.nome);
+  console.log(existe);
   if (existe) {
-    item.id = existe.id;
-
-    const elemento = document.querySelector('[data-id="' + existe.id + '"]');
-    elemento.firstChild.innerHTML = item.quantidade;
-
-    listaItens[existe.id] = item;
-    localStorage.setItem("itens", JSON.stringify(listaItens));
+    return true;
   } else {
-    item.id = listaItens.length;
-
-    criarElemento(item);
-    localStorage.setItem("itens", JSON.stringify(listaItens));
-  }
-}
-
-function botaoDeleta(id) {
-  const elementoBotaoApaga = document.createElement("button");
-  elementoBotaoApaga.innerText = "X";
-  elementoBotaoApaga.classList.add("botao");
-
-  elementoBotaoApaga.addEventListener("click", function (event) {
-    //outra maneira de pegar o evento (dúvida)
-    //console.log(event.target);
-    console.log(document.querySelector('[data-id="' + id + '"]'));
-    deletaElemento(this.parentNode, id);
-  });
-
-  return elementoBotaoApaga;
-}
-
-function deletaElemento(tag, id) {
-  tag.remove();
-  listaItens.splice(
-    listaItens.findIndex((elemento) => elemento.id === id),
-    1
-  );
-  lista;
-  alteraIds(listaItens);
-  localStorage.setItem("itens", JSON.stringify(listaItens));
-}
-
-function alteraIds(array) {
-  for (let i = 0; i < array.length; i++) {
-    array[i].id = i;
+    return false;
   }
 }
