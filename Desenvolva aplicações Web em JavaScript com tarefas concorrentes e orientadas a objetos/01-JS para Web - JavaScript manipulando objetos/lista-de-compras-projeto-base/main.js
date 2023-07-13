@@ -10,7 +10,7 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   salvarItem();
-  mostraritem();
+  mostrarItem();
   itensInput.focus();
 });
 
@@ -32,7 +32,7 @@ function salvarItem() {
   itensInput.value = "";
 }
 
-function mostraritem() {
+function mostrarItem() {
   ulItensListados.innerHTML = "";
   ulItensComprados.innerHTML = "";
   listaDeItens.forEach((element, index) => {
@@ -55,7 +55,8 @@ function mostraritem() {
           <input type="text" class="is-size-5" value="${element.valor}"></input>
         </div>
         <div>
-        <button onclick="editarItem()"><i class="fa-regular fa-floppy-disk is-clickable"></i></button><i class="fa-regular is-clickable fa-pen-to-square editar"></i>
+        <button onclick="editarItem()"><i class="fa-regular fa-floppy-disk is-clickable"></i></button>
+        <i class="fa-regular is-clickable fa-pen-to-square editar"></i>
           <i class="fa-solid fa-trash is-clickable deletar"></i>
         </div>
     </li>`;
@@ -70,15 +71,10 @@ function mostraritem() {
         event.target.parentElement.parentElement.getAttribute("data-value");
 
       listaDeItens[valorDoElement].checar = event.target.checked;
-      mostraritem();
+      mostrarItem();
     });
   });
 
-  deletarItem();
-  editarItem();
-}
-
-function deletarItem() {
   const deletarObjetos = document.querySelectorAll(".deletar");
 
   deletarObjetos.forEach((element) => {
@@ -86,20 +82,28 @@ function deletarItem() {
       const valorDoElement =
         event.target.parentElement.parentElement.getAttribute("data-value");
       listaDeItens.splice(valorDoElement, 1);
-      mostraritem();
+      mostrarItem();
+    });
+  });
+
+  const itensEditaveis = document.querySelectorAll(".editar");
+
+  itensEditaveis.forEach((element) => {
+    element.addEventListener("click", (event) => {
+      itemAEditar =
+        event.target.parentElement.parentElement.getAttribute("data-value");
+      mostrarItem();
+      // console.log(itemAEditar);
     });
   });
 }
 
 function editarItem() {
-  const editarItens = document.querySelectorAll(".editar");
-
-  editarItens.forEach((element) => {
-    element.addEventListener("click", (event) => {
-      itemAEditar =
-        event.target.parentElement.parentElement.getAttribute("data-value");
-
-      mostraritem();
-    });
-  });
+  const itemEditado = document.querySelector(
+    `[data-value="${itemAEditar}"] input[type="text"]`
+  );
+  listaDeItens[itemAEditar].valor = itemEditado.value;
+  console.log(listaDeItens);
+  itemAEditar = -1;
+  mostrarItem();
 }
