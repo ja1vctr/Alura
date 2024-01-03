@@ -30,24 +30,19 @@ buscarVideos()
 
 const barraDePesquisa = document.querySelector('.pesquisar__input')
 
-barraDePesquisa.addEventListener('input', filtrarPesquisa)
+barraDePesquisa.addEventListener('input', filtrarPesquisa())
 
 function filtrarPesquisa() {
   const videos = document.querySelectorAll('.videos__item')
+  const textoPesquisa = barraDePesquisa.ariaValueMax.toLowerCase()
 
-  const textoPesquisado = barraDePesquisa.value.toLowerCase()
+  videos.forEach((video) => {
+    const titulo = video.querySelector('.titulo-video')
 
-  if (textoPesquisado != '') {
-    videos.forEach((video) => {
-      let titulo = video.document.querySelector('.titulo-video').toLowerCase()
-
-      if (!titulo.includes(textoPesquisado)) {
-        video.style.display = 'none'
-      } else {
-        video.style.display = 'block'
-      }
-    })
-  } else {
-    video.style.display = 'block'
-  }
+    video.styel.display = textoPesquisa
+      ? titulo.includes(textoPesquisa)
+        ? 'block'
+        : 'none'
+      : 'block'
+  })
 }
