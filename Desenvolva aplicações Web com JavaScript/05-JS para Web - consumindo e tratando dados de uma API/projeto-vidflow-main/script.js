@@ -27,3 +27,27 @@ async function buscarVideos() {
 }
 
 buscarVideos()
+
+const barraDePesquisa = document.querySelector('.pesquisar__input')
+
+barraDePesquisa.addEventListener('input', filtrarPesquisa)
+
+function filtrarPesquisa() {
+  const videos = document.querySelectorAll('.videos__item')
+
+  const textoPesquisado = barraDePesquisa.value.toLowerCase()
+
+  if (textoPesquisado != '') {
+    videos.forEach((video) => {
+      let titulo = video.document.querySelector('.titulo-video').toLowerCase()
+
+      if (!titulo.includes(textoPesquisado)) {
+        video.style.display = 'none'
+      } else {
+        video.style.display = 'block'
+      }
+    })
+  } else {
+    video.style.display = 'block'
+  }
+}
