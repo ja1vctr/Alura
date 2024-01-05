@@ -30,16 +30,18 @@ buscarVideos()
 
 const barraDePesquisa = document.querySelector('.pesquisar__input')
 
-barraDePesquisa.addEventListener('input', filtrarPesquisa())
+barraDePesquisa.oninput = filtrarPesquisa()
 
 function filtrarPesquisa() {
   const videos = document.querySelectorAll('.videos__item')
-  const textoPesquisa = barraDePesquisa.ariaValueMax.toLowerCase()
+  const textoPesquisa = barraDePesquisa.value.toLocaleLowerCase()
 
   videos.forEach((video) => {
-    const titulo = video.querySelector('.titulo-video')
+    let titulo = video
+      .querySelector('.titulo-video')
+      .textContent.toLocaleLowerCase()
 
-    video.styel.display = textoPesquisa
+    video.style.display = textoPesquisa
       ? titulo.includes(textoPesquisa)
         ? 'block'
         : 'none'
