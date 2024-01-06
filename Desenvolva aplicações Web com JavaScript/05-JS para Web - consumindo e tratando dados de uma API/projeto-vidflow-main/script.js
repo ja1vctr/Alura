@@ -16,7 +16,8 @@ async function buscarVideos() {
       <div class="descricao-video">
       <img class="img-canal" src="${element.imagem}" alt="Logo do Canal">
       <h3 class="titulo-video">${element.titulo}</h3>
-      <p class="titulo-canal">${element.descricao}</p> 
+      <p class="titulo-canal">${element.descricao}</p>
+      <p class="categoria" hidden>${element.categoria}</p>
       </div>
       </li>
       `
@@ -46,5 +47,24 @@ function filtrarPesquisa() {
         ? 'block'
         : 'none'
       : 'block'
+  })
+}
+
+const botaoCategoria = document.querySelectorAll('.superior__item')
+
+botaoCategoria.forEach((categoria) => {
+  let nomeCategoria = categoria.getAttribute('name')
+
+  categoria.addEventListener('click', () =>
+    filtrarPesquisaAvancada(nomeCategoria)
+  )
+})
+
+async function filtrarPesquisaAvancada(value) {
+  const videos = document.querySelectorAll('.videos__item')
+
+  videos.forEach((video) => {
+    let categoriaVideo = video.querySelector('.categoria').textContent
+    video.style.display = categoriaVideo.includes(value) ? 'block' : 'none'
   })
 }
