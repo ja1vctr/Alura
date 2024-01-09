@@ -31,7 +31,7 @@ buscarVideos()
 
 const barraDePesquisa = document.querySelector('.pesquisar__input')
 
-barraDePesquisa.oninput = filtrarPesquisa()
+barraDePesquisa.oninput = filtrarPesquisa
 
 function filtrarPesquisa() {
   const videos = document.querySelectorAll('.videos__item')
