@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main {
+  background-color: rgb(1, 179, 179);
+  color: aliceblue;
+  font-size: 4rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.principal {
+  margin: 10px;
+}
