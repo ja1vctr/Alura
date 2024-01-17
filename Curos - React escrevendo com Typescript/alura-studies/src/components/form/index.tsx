@@ -5,8 +5,8 @@ import './style.scss'
 class Form extends React.Component {
   render() {
     return (
-      <form>
-        <div>
+      <form className="novaTarefa">
+        <div className="inputContainer">
           <label htmlFor="tarefa">Adicione um novo estudo</label>
           <input
             type="text"
@@ -16,7 +16,7 @@ class Form extends React.Component {
             required
           />
         </div>
-        <div>
+        <div className="inputContainer">
           <label htmlFor="tempo">Tempo</label>
           <input
             type="time"
