@@ -1,0 +1,22 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #fefefe;
+  background-color: #010101;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 0 50vmax;
+  height: 100vh;
+}
+img {
+  height: 400px;
+  width: 500px;
+  border-radius: 1em;
+}
+.titulo-destaque {
+  color: burlywood;
+}
+.titulo {
+  font-weight: 600;
+  font-size: 2em;
+}
