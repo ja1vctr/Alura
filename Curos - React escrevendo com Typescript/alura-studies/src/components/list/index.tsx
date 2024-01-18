@@ -1,6 +1,6 @@
 import style from './list.module.scss'
 
-function List() {
+export default function List() {
   const listaTarefas = [
     {
       tarefa: 'React',
@@ -33,5 +33,3 @@ function List() {
     </aside>
   )
 }
-
-export default List
