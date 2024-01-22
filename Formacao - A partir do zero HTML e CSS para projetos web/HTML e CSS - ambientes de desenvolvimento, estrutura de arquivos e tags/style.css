@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'Montserrat', sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
 }
 body {
   box-sizing: border-box;
@@ -36,10 +36,11 @@ img {
   align-items: center;
   flex-direction: column;
   width: 615px;
+  gap: 20px;
 }
 .apresentacao__conteudo__titulo {
   text-align: justify;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 700;
   font-family: 'Rowdies', sans-serif;
 }
@@ -50,6 +51,7 @@ img {
   text-align: justify;
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
+  font-weight: 100;
 }
 
 .box-link {
@@ -62,7 +64,7 @@ img {
   text-align: center;
   width: 170px;
   padding: 21.5px 0;
-  margin: 25px 0;
+
   background-color: chocolate;
   border-radius: 0.5em;
   font-family: 'Rowdies', sans-serif;
