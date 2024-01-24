@@ -1,5 +1,6 @@
 :root {
-  --color-primaria: #010101;
+  --bg-primary: #010101;
+  --bg-icon-secondary: chocolate;
 }
 
 @font-face {
@@ -25,14 +26,14 @@ body {
   height: 100vh;
   width: 100%;
   color: #fefefe;
-  background-color: var(--color-primaria);
+  background-color: var(--bg-primary);
 }
 
-header {
+/* header {
   box-sizing: border-box;
   width: 100%;
   padding: 0% 12%;
-}
+} */
 
 img {
   height: 518px;
@@ -91,14 +92,20 @@ img {
   width: 170px;
   padding: 21.5px 0;
 
-  /* background-color: chocolate; */
   border-radius: 0.5em;
   font-family: 'Rowdies', sans-serif;
   font-size: 16px;
   color: #fefefe;
   text-decoration: none;
-  border: 1px solid chocolate;
+  border: 1px solid var(--bg-icon-secondary);
 }
+
+.box-link__link:hover {
+  background-color: var(--bg-icon-secondary);
+  font-size: larger;
+  transition-duration: 200ms;
+}
+
 .box-link__link__icon {
   width: 24px;
   height: 24px;
@@ -109,8 +116,8 @@ img {
   font-weight: 400;
 }
 
-footer {
+/* footer {
   width: 100%;
   padding: 10%;
   text-align: center;
-}
+} */
