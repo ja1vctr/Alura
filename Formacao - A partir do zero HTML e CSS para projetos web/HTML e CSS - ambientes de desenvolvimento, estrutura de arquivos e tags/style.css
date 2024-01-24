@@ -25,11 +25,28 @@ body {
   background-color: var(--bg-primary);
 }
 
-/* header {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0% 12%;
-} */
+.cabecalho {
+  padding: 1.2% 15% 1.2% 15%;
+  border-bottom: 1px solid var(--text-color-secondary);
+}
+
+.cabecalho__menu {
+  display: flex;
+  gap: 40px;
+}
+
+.cabecalho__menu__link {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  color: var(--text-color-primary);
+}
+
+.cabecalho__menu__link:hover {
+  color: var(--bg-icon-secondary);
+  font-size: 22px;
+  transition-duration: 150ms;
+}
 
 img {
   height: 518px;
@@ -112,7 +129,7 @@ img {
 }
 
 .rodape {
-  width: 100%;
+  /* width: 100%; */
   padding: 2%;
   margin: 0;
   color: var(--text-color-primary);
