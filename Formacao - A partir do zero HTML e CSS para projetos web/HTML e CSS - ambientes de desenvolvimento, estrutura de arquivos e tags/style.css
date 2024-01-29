@@ -1,6 +1,6 @@
 :root {
-  --bg-primary: #010101;
-  --bg-icon-secondary: chocolate;
+  --bg-primary: #1c1c1c;
+  --bg-icon-secondary: rgb(227, 127, 56);
   --text-color-primary: #fefefe;
   --text-color-secondary: burlywood;
 }
@@ -10,10 +10,7 @@
   src: url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
 }
 
-@font-face {
-  font-family: 'Montserrat', sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;900&display=swap');
 
 @font-face {
   font-family: 'Krona One', sans-serif;
@@ -26,33 +23,44 @@ body {
 }
 
 .cabecalho {
-  padding: 1.2% 15% 1.2% 15%;
-  border-bottom: 1px solid var(--text-color-secondary);
+  display: flex;
+  align-items: center;
+  padding: 0 20%;
+  height: 40px;
+  /* border-bottom: 1px solid var(--text-color-secondary); */
 }
 
 .cabecalho__menu {
   display: flex;
-  gap: 40px;
+  gap: 80px;
 }
 
 .cabecalho__menu__link {
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 20px;
   color: var(--text-color-primary);
 }
 
 .cabecalho__menu__link:hover {
   color: var(--bg-icon-secondary);
-  font-size: 22px;
+  /* font-size: 22px; */
   transition-duration: 150ms;
 }
 
 img {
-  height: 518px;
-  width: 345px;
-  border-radius: 1em;
+  height: 45%;
+  width: 35%;
+  border-radius: 01em;
+  transition: 400ms;
 }
+
+img:hover {
+  box-shadow: 0.5em 0.5em 2.3em var(--bg-icon-secondary);
+  margin: 0 0.5em 0 0;
+  transition: 400ms;
+}
+
 .apresentacao {
   box-sizing: border-box;
   display: flex;
@@ -60,7 +68,7 @@ img {
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 5% 15%;
+  padding: 5% 20%;
 }
 .apresentacao__conteudo {
   display: flex;
@@ -72,7 +80,7 @@ img {
 }
 .apresentacao__conteudo__titulo {
   text-align: justify;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   font-family: 'Rowdies', sans-serif;
 }
@@ -80,10 +88,10 @@ img {
   color: var(--text-color-secondary);
 }
 .apresentacao__conteudo__texto {
-  text-align: justify;
-  font-family: 'Montserrat', sans-serif;
-  /* font-size: 18px; */
-  font-weight: inherit;
+  text-align: start;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: lighter;
 }
 
 .box-link {
@@ -135,7 +143,9 @@ img {
   color: var(--text-color-primary);
   background-color: var(--bg-icon-secondary);
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 400;
+  position: static;
+  bottom: 0;
 }
