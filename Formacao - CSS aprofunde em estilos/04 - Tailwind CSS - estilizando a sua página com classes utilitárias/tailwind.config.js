@@ -2,8 +2,8 @@
 module.exports = {
   content: ['./src/**/*.{html,js}'],
   theme: {
-    colors: {
-      extend: {
+    extend: {
+      colors: {
         azul: {
           claro: '#C5DFFF',
           escuro: '#061E3C',
