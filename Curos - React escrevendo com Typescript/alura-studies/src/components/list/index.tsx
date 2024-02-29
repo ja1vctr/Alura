@@ -3,7 +3,6 @@ import ItemLista from './itens'
 import style from './list.module.scss'
 
 export default function List() {
-  const [texto, setTexto] = useState('Meu estado')
   const [listaTarefas, setListaTarefas] = useState([
     {
       tarefa: 'React',

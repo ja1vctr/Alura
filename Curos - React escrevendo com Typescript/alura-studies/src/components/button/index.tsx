@@ -1,6 +1,11 @@
-import React from 'react'
 import style from './button.module.scss'
 
-export default function Button(props: { descricao: string }) {
-  return <button className={style.botao}>{props.descricao}</button>
+export default function Button({
+  descricao,
+  tipo,
+}: {
+  descricao: string
+  tipo?: 'button' | 'submit' | 'reset ' | undefined
+}) {
+  return <button className={style.botao}>{descricao}</button>
 }
