@@ -3,13 +3,17 @@ import Form from '../components/form'
 import List from '../components/list'
 import Cronometro from '../components/cronometro'
 import style from './App.module.scss'
+import { useState } from 'react'
+import { ITarefa } from '../types/tarefas'
 
 function App() {
+  const [Tarefas, setTarefas] = useState<Array<ITarefa> | []>([])
+
   return (
     <div className={style.AppStyle}>
-      <Form />
+      <Form setTarefas={setTarefas} />
       <Cronometro />
-      <List />
+      <List tarefas={Tarefas} />
     </div>
   )
 }
