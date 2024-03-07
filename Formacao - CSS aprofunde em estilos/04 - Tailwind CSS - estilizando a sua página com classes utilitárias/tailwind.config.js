@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,js}'],
+  content: ['./src/**/*.{html, js}'],
   theme: {
     extend: {
       colors: {
@@ -10,9 +10,6 @@ module.exports = {
           hover: '#1057B0',
         },
       },
-    },
-    fontFamily: {
-      inter: ['Inter', 'sans-serif'],
     },
   },
   plugins: [],
