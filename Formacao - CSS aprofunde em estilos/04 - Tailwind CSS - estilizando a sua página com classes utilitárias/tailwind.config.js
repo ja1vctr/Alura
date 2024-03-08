@@ -10,6 +10,9 @@ module.exports = {
           hover: '#1057B0',
         },
       },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [],
