@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../button'
 import style from './form.module.scss'
 import { ITarefa } from '../../types/tarefas'
+import { faker } from '@faker-js/faker'
 
 export default class Form extends React.Component<{
   setTarefas: React.Dispatch<React.SetStateAction<Array<ITarefa>>>
@@ -11,11 +12,18 @@ export default class Form extends React.Component<{
     tempo: '00:00:00',
   }
 
+  uuid: string = faker.string.uuid()
+
   adicionarTarefa(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault()
     this.props.setTarefas((listaTarefas) => [
       ...listaTarefas,
-      { ...this.state },
+      {
+        ...this.state,
+        selecionado: false,
+        concluido: false,
+        id: this.uuid,
+      },
     ])
     this.setState({
       tarefa: '',
